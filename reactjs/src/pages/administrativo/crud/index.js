@@ -20,14 +20,14 @@ export default function Crud() {
     const [eventos, setEventos] = useState();
     
     const getEvents = async (nome, categoria) => {
-        ref.current.continuousStart();
+        
         let r = await api.crudGetEvents(nome, categoria);
         if(!Validador(r)) {
             ref.current.complete();
             return;
         }
         setEventos(r);
-        ref.current.complete();
+    
     }
 
     const deleteEvent = async (id) => {
