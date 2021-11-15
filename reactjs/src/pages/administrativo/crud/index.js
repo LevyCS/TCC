@@ -1,24 +1,48 @@
 import { Container } from './styled'
 import { Table_header, Table_content2 } from './table'
 import { ButtonLeftImage } from './buttons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Api from '../../../service/apiEvent'
 import { Validador } from '../../../components/commum/index'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import LoadingBar from 'react-top-loading-bar'
 
 const api = new Api();
 
 export default function Crud() {
+    const navig = useHistory();
+    const ref = useRef(null);
 
     const [eventos, setEventos] = useState();
     
     const getEvents = async (nome, categoria) => {
+        ref.current.continuousStart();
         let r = await api.crudGetEvents(nome, categoria);
-        console.log(r)
-        if(!Validador(r))
+        if(!Validador(r)) {
+            ref.current.complete();
             return;
-        
+        }
         setEventos(r);
+        ref.current.complete();
+    }
+
+    const deleteEvent = async (id) => {
+        ref.current.continuousStart();
+        let r = await api.crudDeleteEvents(id);
+        if(!Validador(r)) {
+            ref.current.complete();
+            return;
+        }
+
+        toast.dark('😀 Evento excluído do sistema')
+        getEvents('','');
+        ref.current.complete()
+    
+
     }
 
     useState(() => {
@@ -27,6 +51,8 @@ export default function Crud() {
 
     return (
         <Container>
+            <ToastContainer> </ToastContainer>
+            <LoadingBar color='#13A06F' ref={ref} />
             <h1> GERENCIADOR DE EVENTOS </h1>
             <div className="inputs">
                 <div className="agp-input">
@@ -39,7 +65,7 @@ export default function Crud() {
             <table>
                 <Table_header titulo1="Evento" titulo2="Genêro" titulo3="Ações"/>
                 {!eventos ? <div> </div> : eventos.map(item => {
-                    return <Table_content2 key={item.id_evento} campo1={item.nm_evento} campo2={item.ds_genero} />
+                    return <Table_content2 key={item.id_evento} campo1={item.nomevento} campo2={item.gênero} info={item} onDelete={deleteEvent} />
                 })}
             </table>
         </Container>        
