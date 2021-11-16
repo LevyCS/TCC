@@ -98,6 +98,7 @@ export default function Principal() {
                             showDots={true}
                             containerClass="container-class"
                         >
+                            
                             { !test ? <div> </div> : test.map(item => <DirBox info={item} key={item.id} /> )}
 
                         </Carousel>
