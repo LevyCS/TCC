@@ -12,6 +12,9 @@ const Container = styled.div`
     padding: 3em;
     text-decoration: none;
 
+    a {
+        text-decoration: none;
+    }
 
 .title {
     display: flex;

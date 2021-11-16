@@ -196,7 +196,6 @@ app.get('/image', async (req, resp) => {
 app.get('/login', async(req, resp) => {
     try {
         
-    //    console.log(!validateEmptyValues(req.query))
         if(!validateEmptyValues(req.query)) 
             return resp.send({erro: "Todos os campos são obrigatórios"})
 

@@ -61,7 +61,7 @@ export default function AddEvent (props) {
             <ToastContainer> </ToastContainer>
             <div className="title">
                 <div className="the-polygon"> <img src="/assets/images/play-button.png" alt="" width="40em" hwight="40em" /> </div>
-                <div className="the-title"> NOME EVENTO </div>
+                <div className="the-title"> NOVO EVENTO </div>
             </div>
             <div className="principal-box">
                 <div className="boxes">
@@ -148,7 +148,7 @@ export default function AddEvent (props) {
         
                         <div className="column1">
                             <div> Datas e horários selecionados: </div>
-                            {hours.map(item => {
+                            {!hours ? <div> </div> : hours.map(item => {
                                 return <div> 
                                     <div> {item.data} </div>
                                     <div> {item.horarios} </div>

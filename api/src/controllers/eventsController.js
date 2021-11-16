@@ -26,7 +26,6 @@ app.get('/crud', async(req, resp) => {
         }
 
         
-        console.log(filterChoose())
         let events = await db.infoc_nws_tb_evento.findAll({
             where: filterChoose(), order: [['id_evento', 'desc']],
             attributes: camps(),
@@ -77,8 +76,6 @@ app.post('/crud', upload.array('images', 3), async(req, resp) => {
         let imgCapa = req.files[0].path
         let imgFundo = req.files[1].path
         let imgSec= req.files[2].path
-
-        console.log(req.files[0].path);
  
         categoria = categoria.toLowerCase();
         let category = await db.infoc_nws_tb_categoria.findOne({ where: {ds_tema: categoria}})

@@ -16,29 +16,29 @@ import LoadingBar from 'react-top-loading-bar'
  
 const api = new Api();
 
-// function lerUsuarioLogado (navigation, toast) {
-//     let logado = Cookies.get('usuario-logado')
-//     if (logado == null) {
-//         toast.dark('😢 Você deve estar logado para comprar');
-
-        
-//         navigation.push('/logar')
-//         return null;
-//     }
-//     let usuarioLogado = JSON.parse(logado);
-//     return usuarioLogado; 
-// }
-
 
 export default function AllBuy (props) {
     const ref = useRef(null)
-    const customId = "custom-id-yes";
     const navig = useHistory();
 
-    // const usuarioLogado = lerUsuarioLogado(navig, toast) || {};
+    function lerUsuarioLogado (navigation, toast) {
+        let logado = Cookies.get('usuario-logado')
+        if (logado == null) {
+            toast.dark('😢 Você deve estar logado para comprar');
+
+            
+            navigation.push('/logar')
+            return null;
+        }
+        let usuarioLogado = JSON.parse(logado);
+        return usuarioLogado; 
+    }
+
+
+    const usuarioLogado = lerUsuarioLogado(navig, toast) || {};
     
     const [event, setEvent] = useState(props.location.state);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(usuarioLogado);
 
     const [qtd, setQtd] = useState(1)
     const [cardNumber, setCardNumber] = useState('');
@@ -70,6 +70,7 @@ export default function AllBuy (props) {
     }
 
     const zeroToOne = () => {
+        console.log(user)
         setExibindo(1);
         setInfoReadOnly({
             evento: event.nomevento,
@@ -88,8 +89,6 @@ export default function AllBuy (props) {
         }
         var r = [...hours]
         r[i] = hour
-        
-        console.log(r)
 
         setHours(r)
     }
@@ -113,8 +112,13 @@ export default function AllBuy (props) {
         if(!Validador(r))
             return;
 
-        navig.push('/')
+        toast.dark('Compra concluída')
+        setTimeout(() => navig.push('/'), 10000)
     }
+
+    useState(() => {
+
+    })
 
     return (
         <Everything>

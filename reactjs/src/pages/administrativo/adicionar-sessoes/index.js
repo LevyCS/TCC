@@ -4,6 +4,7 @@ import { Container } from './styled'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { Botao } from '../../../components/botoes/styled';
 
 
 export default function AddSession (props) {
@@ -80,33 +81,36 @@ export default function AddSession (props) {
     return (
         <Container>
             <ToastContainer />
-            <div className="datePart"> 
-                <div className="agp-input"> 
-                    <label> Adicione uma data: </label>
-                    <input type="date" onChange={e => setCurrentDate(e.target.value)}/>
-                </div>
+            <h1> Gerenciar sessões </h1>
+            <div className="container2"> 
+                <div className="datePart"> 
+                    <div className="agp-input"> 
+                        <label> Adicione uma data: </label>
+                        <input type="date" onChange={e => setCurrentDate(e.target.value)}/>
+                    </div>
 
-                <button onClick={addDate}> Adicionar Data </button>
-            </div>
-            <div className="HourPart">
-                <select onChange={(e) => setCurrentDate2(e.target.value)}>
-                    <option value={0}> Selecione uma data </option>
-                    {dates.map(item =>{
-                        return <option value={item}> {item} </option>
-                    })}
-                </select>
-                <div className="agp-input"> 
-                    <label> Adicione um horário para o dia selecionado: </label>
-                    <input type="time" value={currentHour} onChange={e => setCurrentHour(e.target.value)}/>
+                    <Botao onClick={addDate}> Adicionar Data </Botao>
                 </div>
+                <div className="hourPart">
+                    <select onChange={(e) => setCurrentDate2(e.target.value)}>
+                        <option value={0}> Selecione uma data </option>
+                        {dates.map(item =>{
+                            return <option value={item}> {item} </option>
+                        })}
+                    </select>
+                    <div className="agp-input"> 
+                        <label> Adicione um horário para o dia selecionado: </label>
+                        <input type="time" value={currentHour} onChange={e => setCurrentHour(e.target.value)}/>
+                    </div>
 
-                <button onClick={addHour}> Adicionar horário </button>
+                    <Botao onClick={addHour}> Adicionar horário </Botao>
+                </div>
             </div>
 
             <Link to={{
                 pathname: '/addevent',
                 state: hours
-            }} > <button> Confirmar sessões </button> </Link>
+            }} > <Botao> Confirmar sessões </Botao> </Link>
         </Container>
 
     )
