@@ -43,7 +43,7 @@ const Container = styled.div`
             
     .body {
         background: linear-gradient(180deg, rgba(23, 61, 64, 0.92) 0%, rgba(23, 61, 64, 0.899330) 15%, rgba(47, 79, 79, 0.90) 38.42%, rgba(47, 79, 79, 0.90) 40.42%);
-        min-height:100vh;
+        min-height: 100vh;
     }
     
     .themes {
