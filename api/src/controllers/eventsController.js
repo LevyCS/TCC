@@ -29,6 +29,7 @@ app.get('/crud', async(req, resp) => {
         console.log(filterChoose())
         let events = await db.infoc_nws_tb_evento.findAll({
             where: filterChoose(), order: [['id_evento', 'desc']],
+            attributes: camps(),
             include: [
                 {
                     model: db.infoc_nws_tb_categoria,
@@ -192,8 +193,10 @@ app.put('/crud/teste', async (req, resp) => {
 
 app.delete('/crud', async(req, resp) => {
     try {
-        let r = await db.infoc_nws_tb_evento.destroy({
-            where: {id_evento: req.query.id}
+        let r = await db.infoc_nws_tb_evento.update({
+            bt_ativo: false
+        },
+            {where: {id_evento: Number(req.query.id)}
         })
         resp.sendStatus(200);
     } catch (e) {

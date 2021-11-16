@@ -84,12 +84,15 @@ app.put('/update/:id', upload.single('imagem'), async (req, resp) => {
 
         if(!validateEmptyValues(json))
             return resp.send({erro: "Todos os campos são obrigatórios"})
-       
-        if(isNaN(Number(json.cpf))) 
-            return resp.send({erro: "O cpf deve estar no formato só números"})
 
         if(json.nmUsu.lenght <= 3)
             return resp.send({erro: "Nome precisa conter mais de 3 caracteres"})
+
+        if(isNaN(Number(json.cpf))) 
+            return resp.send({erro: "O cpf deve estar no formato só números"})
+
+        if(json.cpf.lenght != 11)
+            return resp.send({erro: "Cpf deve contem 11 número"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
             return resp.send({erro: "Email inválido, precisa conter um dominio"})
@@ -105,7 +108,7 @@ app.put('/update/:id', upload.single('imagem'), async (req, resp) => {
         let validacaoUsername = await db.infoc_nws_tb_usuario.findOne({where: {ds_username: json.username}})
         if (validacaoUsername != null && validacaoUsername.id_usuario != req.params.id)
             return resp.send({ erro: "Username já cadastrado"})
-
+            
         if (!req.file) {
             let update = await db.infoc_nws_tb_usuario.update({
                 nm_usuario: json.nmUsu,
@@ -139,12 +142,15 @@ app.post('/create', upload.single('imagem'), async(req, resp) => {
 
         if(!validateEmptyValues(json))
             return resp.send({erro: "Todos os campos são obrigatórios"})
-       
-        if(isNaN(Number(json.cpf))) 
-            return resp.send({erro: "O cpf deve estar no formato só números"})
 
         if(json.nmUsu.lenght <= 3)
             return resp.send({erro: "Nome precisa conter mais de 3 caracteres"})
+
+        if(isNaN(Number(json.cpf))) 
+            return resp.send({erro: "O cpf deve estar no formato só números"})
+
+        if(json.cpf.lenght != 11)
+            return resp.send({erro: "Cpf deve contem 11 número"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
             return resp.send({erro: "Email inválido, precisa conter um dominio"})

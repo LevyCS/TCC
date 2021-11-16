@@ -147,26 +147,13 @@ export default function AddEvent (props) {
                         </div>
         
                         <div className="column1">
-                            <div><div> Datas e horários selecionados: </div> </div> 
-                            <div>
-                                <div> 23/10/10 </div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 23/10/10 </div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 23/10/10 </div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 23/10/10 </div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                <div> 10:10</div>
-                                   
-                            </div>
+                            <div> Datas e horários selecionados: </div>
+                            {hours.map(item => {
+                                return <div> 
+                                    <div> {item.data} </div>
+                                    <div> {item.horarios} </div>
+                                </div>
+                            })}
                             
                         </div>
                         <div className="column">

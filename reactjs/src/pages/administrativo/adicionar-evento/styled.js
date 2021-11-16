@@ -89,7 +89,6 @@ input[type="date"]{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-height: 20vh;
 }
 
 .column {
@@ -150,6 +149,7 @@ button {
 .column1 {
     overflow-y: auto;
     margin-right: 2rem;
+    margin-top: 1rem;
 }
     
 `

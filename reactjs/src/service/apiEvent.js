@@ -8,7 +8,7 @@ export default class Api {
     async crudGetEvents(nome, categoria) {
         let r = await api.get(`/crud?nome=${nome}&&categoria=${categoria}`)
         return r.data;
-    }
+    } 
 
     async crudCreateEvents(formdata) {
         let r = await api.post('/crud', formdata, {
@@ -19,11 +19,12 @@ export default class Api {
     }
     
     async crudUpdateEvents() {
-    
+        
     }
     
-    async crudDeleteEvents() {
-    
+    async crudDeleteEvents(id) {
+        let r = await api.delete(`/crud/?id=${id}`) 
+        return r.data;
     }
 
     async getImage(img) {
