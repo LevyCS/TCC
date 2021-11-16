@@ -13,7 +13,6 @@ export default function ConfirmacaoCompra () {
 
     async function list() { 
         const resp = await api.getConfirmTicket(); 
-        console.log(resp)
         setTicket(resp);
     }
 
@@ -35,15 +34,15 @@ export default function ConfirmacaoCompra () {
                         <div className = "Title-top"> INGRESSOS </div> 
                         <div className = "Caption-top"> CONFIRMAÇÃO DE COMPRAS </div>     
                     </div> 
-
+                    {console.log(ticket)}
                     <div className = "Tickets"> 
                         { ticket.map(item => 
                             <Box>  
                                 <div className = "Image-ticket"> <img src = "/assets/images/NWS-Ticket.png" width = "190" height = "130" />  </div>
                                 <div className = "Event-Information"> 
-                                        <div className = "Title"> {item.usuario} </div> 
-                                        <div className = ""> INGRESSO: {item.evento} </div> 
-                                        <div> PAGAMENTO: {item.tipoPagamento} </div>    
+                                        <div className = "Title"> {item.usuario.toUpperCase()} </div> 
+                                        <div className= "Text"> INGRESSO: {item.evento} </div> 
+                                        <div className = "Text"> PAGAMENTO: {item.tipoPagamento} </div>    
                                </div> 
         
                                <div className = "Buttons-confirm"> 

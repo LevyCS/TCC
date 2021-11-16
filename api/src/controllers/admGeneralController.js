@@ -17,35 +17,27 @@ app.get('/confirmTicket', async (req,resp) => {
                 as: 'id_usuario_infoc_nws_tb_usuario',
                 attributes: [],
                 required: true
+            },
+            {
+                model: db.infoc_nws_tb_evento,
+                as: 'infoc_nws_tb_venda_evento',
+                attributes: [],
+                required: true
             }
-            // {
-            //     model: db.infoc_nws_tb_venda_item,
-            //     as: 'infoc_nws_tb_venda_items',
-            //     attributes: [],
-            //     required: true,
-            //     include: [
-            //         {
-            //             model: db.infoc_nws_tb_evento,
-            //             as: 'id_evento_infoc_nws_tb_evento',
-            //             attributes: [],
-            //             required: true
-            //         }
-            //     ]
-            // }
         ],
         attributes: [
             [col('infoc_nws_tb_venda.id_venda'), 'id'],
             [col('infoc_nws_tb_venda.ds_situacao'), 'situacao'],
             [col('tp_pagamento'), 'tipoPagamento'],
             [col('id_usuario_infoc_nws_tb_usuario.nm_usuario'), 'usuario'],
-            // [col('infoc_nws_tb_venda_items.id_evento_infoc_nws_tb_evento.nm_evento'), 'evento']
+            [col('infoc_nws_tb_venda_evento.nm_evento'), 'evento']
         ],
         group: [
             col('infoc_nws_tb_venda.id_venda'),
             col('infoc_nws_tb_venda.ds_situacao'),
             col('tp_pagamento'),
             col('id_usuario_infoc_nws_tb_usuario.nm_usuario'),
-            // col('infoc_nws_tb_venda_items.id_evento_infoc_nws_tb_evento.nm_evento')
+            col('infoc_nws_tb_venda_evento.nm_evento')
         ]
     })
 

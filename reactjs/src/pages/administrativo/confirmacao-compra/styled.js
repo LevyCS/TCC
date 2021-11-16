@@ -62,6 +62,13 @@ const Container = styled.div`
     .Title {
         font-size: 1.5em; 
         font-weight: bold;  
+
+        padding-bottom: 15px; 
+    }
+
+    .Text { 
+        padding-bottom: 5px; 
+        font-size: 1.1em; 
     }
 
     .Caption-top {
