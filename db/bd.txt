@@ -4,7 +4,7 @@ CREATE TABLE infoc_nws_tb_categoria (
  )ENGINE=INNODB;
  
  CREATE TABLE infoc_nws_tb_usuario (
-   id_usuario            int        primary key    auto_increment,
+   id_usuario            int        primary key auto_increment,
    nm_usuario            varchar(255),
    ds_email                varchar(255),
    ds_username            varchar(255),
@@ -13,7 +13,7 @@ CREATE TABLE infoc_nws_tb_categoria (
    dt_nascimento        date,
    ds_codigo            int,
    bt_adm                bool,
-   img_perfil            varchar(255)
+   img_perfil            varchar(1000)
  )ENGINE=INNODB;
  
   CREATE TABLE infoc_nws_tb_evento (
@@ -21,22 +21,25 @@ CREATE TABLE infoc_nws_tb_categoria (
    id_categoria            int,
    nm_evento            varchar(255),
    ds_duracao            time,
-   ds_classificacao        decimal(15,2),
+   ds_classificacao        int,
    vl_ingresso            decimal(15,2),
    ds_local                varchar(255),
    dt_min                datetime,
    dt_max                datetime,
-   ds_elenco            varchar(255),
-   ds_evento            varchar(255),
-   img_capa                varchar(255),
-   img_fundo            varchar(255),
-   img_sec                varchar(255),
+   ds_elenco            varchar(1000),
+   ds_evento            varchar(1000),
+   img_capa                varchar(1000),
+   img_fundo            varchar(1000),
+   img_sec                varchar(1000),
+   bt_ativo				boolean,
+   dt_inclusao			datetime,
+   ds_genero			varchar(255), 
    FOREIGN KEY (id_categoria) REFERENCES infoc_nws_tb_categoria (id_categoria) 
  )ENGINE=INNODB;
  
  
  CREATE TABLE infoc_nws_tb_calendario (
-   id_calendario        int        primary key    auto_increment,
+   id_calendario        int primary key auto_increment,
    id_evento            int,
    dt_evento            datetime,
    FOREIGN KEY (id_evento) REFERENCES infoc_nws_tb_evento (id_evento)
@@ -50,28 +53,28 @@ CREATE TABLE infoc_nws_tb_categoria (
    FOREIGN KEY (id_calendario) REFERENCES infoc_nws_tb_calendario(id_calendario)                   
  ) ENGINE=INNODB;
  
- 
- CREATE TABLE infoc_nws_tb_venda (
-   id_venda                int        primary key    auto_increment,
-   id_usuario            int,
-   id_cartao            int,
-   ds_situacao            varchar(255),
-   tp_pagamento            varchar(255),
-   FOREIGN KEY (id_usuario) REFERENCES infoc_nws_tb_usuario (id_usuario)
-   FOREIGN KEY (id_cartao) REFERENCES infoc_nws_tb_cartao (id_cartao)
-   
- )ENGINE=INNODB;
- 
- 
  CREATE TABLE infoc_nws_tb_cartao (
    id_cartao            int        primary key auto_increment,
    nr_cartao            varchar(255),
-   nm_cartao            varchar(255),
+   nm_titular            varchar(255),
    ds_cvc                int,
    dt_vencimento        date,
    ds_cpf                varchar(255)
-
 )ENGINE=INNODB;
+ 
+  CREATE TABLE infoc_nws_tb_venda (
+   id_venda                int        primary key auto_increment,
+   id_usuario            int,
+   id_cartao            int,
+    id_evento			int,
+    ds_situacao            varchar(255),
+   tp_pagamento            varchar(255),
+    dt_inclusao				datetime,
+   FOREIGN KEY (id_usuario) REFERENCES infoc_nws_tb_usuario (id_usuario),
+   FOREIGN KEY (id_cartao) REFERENCES infoc_nws_tb_cartao (id_cartao),
+    FOREIGN KEY (id_evento) REFERENCES infoc_nws_tb_evento (id_evento)
+   
+ )ENGINE=INNODB;
  
  CREATE TABLE infoc_nws_tb_venda_item (
    id_venda_item        int        primary key auto_increment,
@@ -82,6 +85,3 @@ CREATE TABLE infoc_nws_tb_categoria (
    FOREIGN KEY (id_calendario_item) REFERENCES infoc_nws_tb_calendario_item (id_calendario_item)
    
 )ENGINE=INNODB;
-
-INSERT INTO infoc_nws_tb_calendario_item
-    VALUES (1, '23:00:00'), (1, '24:00:00'), (1,'01:00:00'), (2, '10:00:00'), (2, '12:00:00'), (2, '14:00:00'), (2, '16:00:00'), (3, '18:00:00'), (3, '20:00:00'), (3, '22:00:00'), (3, '00:00:00'), (4, '13:00:00'), (4, '14:00:00'), (4, '17:00:00'), (4, '19:00:00'), (5, '14:00:00'), (5, '16:00:00'), (5, '18:00:00'), (6, '20:00:00') (6, '21:00:00') (6, '22:00:00'), (7, '10:00:00'), (7, '11:00:00'), (7, '12:00:00'), (8, '15:00:00'), (8,: '15:00:00'), (8, '17:00:00'), (9,'12:00:00'), (9, '14:00:00'), (10, '13:00:00'), (10, '15:00:00'), (10, '17:00:00'), (10, '20:00:00'), (11, '12:00:00'), (11, '10:50:00'), (11, '11:00:00'), (12, '14:00:00'), (12, '16:00:00'), (12, '18:00:00'), (13,'20:00:00'), (13, '22:00:00'), (14, '14:00:00'), (14, '15:30:00'), (14, '17:30:00'), (15, '18:00:00'), (15, '20:30:00'), (16, '22:00:00'), (16, '08:30:00'), (16, '11:00:00'), (17, '14:00:00'), (17, '16:30:00'), (17, '20:30:00'), (18, '21:30:00'), (18, '22:30:00') , (19, '14:30:00'), (19, '15:30:00'), (20, '17:00:00'), (20, '18:00:00'), (20, '20:00:00'), (21,), (21,), (22,), (22,), (22,), (23,), (23,), (23,)
