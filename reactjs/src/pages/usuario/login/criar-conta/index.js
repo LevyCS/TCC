@@ -44,6 +44,7 @@ export default function NWSCriarConta () {
         formData.append('imagem', imagem)
 
         let r = await api.userCreate(formData);
+        
         if (!validarResposta(r)) {
             ref.current.complete();
             return;

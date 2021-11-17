@@ -13,7 +13,8 @@ const FaixaUm = styled.div `
     position: relative;
     background-image: url('${(props) => props.background}');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: 50% 25%;
     height: 30em;
 
     opacity: 0.8;

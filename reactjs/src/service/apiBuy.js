@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create ({
-    baseURL: 'https://tccinsf-newside.herokuapp.com/buy'
+    baseURL: 'http://localhost:3030/buy'
 })
 
 export default class Api {

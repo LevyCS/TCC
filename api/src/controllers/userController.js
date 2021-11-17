@@ -139,17 +139,18 @@ app.post('/create', upload.single('imagem'), async(req, resp) => {
     try {
         let json = req.body;
         delete json.imagem;  
+        console.log(json.cpf.length);
 
         if(!validateEmptyValues(json))
             return resp.send({erro: "Todos os campos são obrigatórios"})
 
-        if(json.nmUsu.lenght <= 3)
+        if(json.nmUsu.length <= 3)
             return resp.send({erro: "Nome precisa conter mais de 3 caracteres"})
 
         if(isNaN(Number(json.cpf))) 
             return resp.send({erro: "O cpf deve estar no formato só números"})
-
-        if(json.cpf.lenght != 11)
+        
+        if(json.cpf.length != 11)
             return resp.send({erro: "Cpf deve contem 11 número"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
@@ -231,13 +232,13 @@ app.post('/forgotpassword', async(req,resp) => {
             port: 587,
             secure: false, 
             auth: {
-                user: 'nws.tccinfoc@gmail.com',
-                pass: 'nwsinfoc',
+                user: 'tccNewSide@gmail.com',
+                pass: 'newside123',
             },
         });
     
         const sendEmail = async() => await sender.sendMail({
-            from: '"New Side" <nws.tccinfoc@gmail.com>', // sender address
+            from: '"New Side" <tccNewSide@gmail.com>', // sender address
             to: json.email, // list of receivers
             subject: "Código de verificação", // Subject line
             html:   `<h1> Código de validação: </h1> 

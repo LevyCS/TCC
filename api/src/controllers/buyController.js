@@ -1,5 +1,6 @@
 import db from "../db.js";
 
+import { validateEmptyValues } from './validation.js'
 import express from "express";
 const app = express.Router();
 
@@ -37,22 +38,36 @@ app.post ('/event', async (req, resp) => {
         let { cardNumber, cardOwner, cvc, validity, cpf } = req.body.creditCard;
         let { userId, paymentMethod, eventId } = req.body.selling;
 
-            
-        if(!ValidateEmptyNullCamps(req.body.selling))    
-            return resp.send({ erro: "Todos os campos são obrigatórios"})
+        if(paymentMethod != "cartao") {
+            let createSelling = await db.infoc_nws_tb_venda.create({
+                id_usuario: userId,
+                id_cartao: null,
+                id_evento: eventId,
+                ds_situacao: "aguardando",
+                tp_pagamento: "pix",
+                dt_inclusao: new Date()
+            })
 
-        if (/\d/.test(cardOwner))
-            return resp.send( {erro: "O portador do cartão deve contem somente letras"})
-
-        if (!validity) 
-            return resp.send({ erro: "vencimento inválido"})
-        
-        if (cvc.length < 3)
-            return resp.send({erro: "cvc inválido"})
-
-        if(paymentMethod == "cartao") {
+            req.body.sellingItems.map(async (item) => {
+                let createSellingItems = await db.infoc_nws_tb_venda_item.create({
+                    id_calendario_item: item,
+                    id_venda: createSelling.id_venda,
+                    ds_qrcode: "nseikkkk"
+                })
+            })
+        }
+        else {
             if(!ValidateEmptyNullCamps(req.body.creditCard))    
                 return resp.send({ erro: "Todos os campos são obrigatórios"})
+    
+            if (/\d/.test(cardOwner))
+                return resp.send( {erro: "O portador do cartão deve contem somente letras"})
+    
+            if (!validity) 
+                return resp.send({ erro: "vencimento inválido"})
+            
+            if (cvc.length < 3)
+                return resp.send({erro: "cvc inválido"})
 
             let createCreditcard = await db.infoc_nws_tb_cartao.create({
                 nr_cartao: cardNumber,
@@ -67,25 +82,7 @@ app.post ('/event', async (req, resp) => {
                 id_cartao: createCreditcard.id_cartao,
                 id_evento: eventId,
                 ds_situacao: "aguardando",
-                tp_pagamento: paymentMethod,
-                dt_inclusao: new Date()
-            })
-
-            req.body.sellingItems.map(async (item) => {
-                let createSellingItems = await db.infoc_nws_tb_venda_item.create({
-                    id_calendario_item: item,
-                    id_venda: createSelling.id_venda,
-                    ds_qrcode: "nseikkkk"
-                })
-            })
-        }
-        else {
-            let createSelling = await db.infoc_nws_tb_venda.create({
-                id_usuario: userId,
-                id_cartao: null,
-                id_evento: eventId,
-                ds_situacao: "aguardando",
-                tp_pagamento: paymentMethod,
+                tp_pagamento: "cartao",
                 dt_inclusao: new Date()
             })
 
