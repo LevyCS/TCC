@@ -92,7 +92,7 @@ app.put('/update/:id', upload.single('imagem'), async (req, resp) => {
             return resp.send({erro: "O cpf deve estar no formato só números"})
 
         if(json.cpf.lenght != 11)
-            return resp.send({erro: "Cpf deve contem 11 número"})
+            return resp.send({erro: "Cpf deve conter 11 números"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
             return resp.send({erro: "Email inválido, precisa conter um dominio"})
@@ -151,7 +151,7 @@ app.post('/create', upload.single('imagem'), async(req, resp) => {
             return resp.send({erro: "O cpf deve estar no formato só números"})
         
         if(json.cpf.length != 11)
-            return resp.send({erro: "Cpf deve contem 11 número"})
+            return resp.send({erro: "Cpf deve conter 11 números"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
             return resp.send({erro: "Email inválido, precisa conter um dominio"})

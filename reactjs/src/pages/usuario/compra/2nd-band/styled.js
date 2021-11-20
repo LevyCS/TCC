@@ -70,6 +70,8 @@ const FaixaDois = styled.div `
     height: 2.5em;
     border-radius: 0.5em;
     outline: none;
+    background-color: #E0E0E0;
+    color: #616161;
  }
  
  .second-box-scheme {

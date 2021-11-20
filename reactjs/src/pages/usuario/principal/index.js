@@ -110,7 +110,7 @@ export default function Principal() {
                 <div className="rodape"> 
                     <div>
                        <a href="https://twitter.com/Newsideofc?t=KpBYUDFi5C9BBKhqVz4vgg&s=09"> <img src="/assets/images/@twiiter_media.png" alt="" className="socialmedia" /> </a>
-                        <a href="www.facebook.com/thenewsideofevents"> <img src="/assets/images/@facebook_media.png" alt="" className="socialmedia" /> </a> 
+                        <a href="https://facebook.com/thenewsideofevents"> <img src="/assets/images/@facebook_media.png" alt="" className="socialmedia" /> </a> 
                     </div>
                     <Link to='/admlogin'> <img src="/assets/images/LOGO TCC - de ladinho.svg" alt="" className="socialmedia" /> </Link> 
                     <div>

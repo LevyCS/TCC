@@ -8,10 +8,8 @@ const api = new Api();
 
 export default function ADMRelatorios () {
     const[report, setReport] = useState([]);
-
     
-    async function listar(type) {
-
+    const listReports = async(type) => {
         let e = await api.allReports(type);
 
         let r = report;
@@ -20,12 +18,11 @@ export default function ADMRelatorios () {
     }
 
     useEffect(() => {
-        listar('semanal');
-        listar('mensal');
-        listar('semestral');
-        listar('anual');
-    }, [])
-
+        listReports('semanal')
+        listReports('mensal')
+        listReports('semestral')
+        listReports('anual')
+    }, []);
 
     return (
         <Relator>

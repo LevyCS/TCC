@@ -5,6 +5,7 @@ const CriarConta = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+
     background-image: url('https://i.pinimg.com/564x/fe/71/77/fe7177975e95d743d58ce9752a5e7dd7.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
