@@ -12,16 +12,10 @@ export default function BuyThirdBand (props) {
     const [cpf, setCpf] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
 
-    const cpfInput = (value) => {
-        const re = /^[0-9\b]+$/;
-        if(re.test(value)) {
-            setCpf(value)
-        }
-    }
 
     useEffect(() => {
         props.cardInformation(cardNumber, cardOwner, cvc, validity, cpf, paymentMethod)
-    }, [cardNumber, cardOwner, cvc, validity, cpf])
+    }, [cardNumber, cardOwner, cvc, validity, cpf, paymentMethod])
 
     return (
         <FaixaTres>
@@ -30,12 +24,12 @@ export default function BuyThirdBand (props) {
                 <div class="payment-like-card">
                     <div class="card-title"> Cartão de Crédito </div>
                     <div class="card-icon"> <img src="/assets/images/credit-card.png" alt="" width="80em" height="95em" /> </div>
-                    <input type="radio" name="aa" id="" class="radio" onChange={() => {setTeste(1); setPaymentMethod("cartão")}}/>
+                    <input type="radio" name="aa" class="radio" onChange={() => {setTeste(1); setPaymentMethod("cartão")}}/>
                 </div>
                 <div class="payment-like-card">
                     <div class="card-title1"> PIX </div>
                     <div class="card-icon1"> <img src="assets/images/icon-pix.png" alt=""width="150em" height="50em" /> </div>
-                    <input type="radio" name="aa" id="" class="radio" onChange={() => {setTeste(0); setPaymentMethod("pix")}} />
+                    <input type="radio" name="aa" class="radio" onChange={() => {setTeste(0); setPaymentMethod("pix")}} />
                 </div>
             </div>
             
@@ -67,7 +61,7 @@ export default function BuyThirdBand (props) {
                         </div>
                         <div class="payment-inf-cc-box">
                             <div class="payment-inf-cc-box-title4"> CPF: </div>
-                            <input type="text" class="payment-inf-cc-box-text" value={cpf} onChange={(e) => cpfInput(e.target.value)}/>
+                            <input type="text" class="payment-inf-cc-box-text" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
                         </div>
                     </div>
                 </div>

@@ -104,6 +104,7 @@ export default function AllBuy (props) {
         setValidity(validity)
         setCpf(cpf)
         setPaymentMethod(paymentMethod)
+        console.log(paymentMethod)
     }
 
 

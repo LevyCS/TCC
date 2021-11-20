@@ -15,12 +15,12 @@ export default function ADMRelatorios () {
     
     const listReports = async(type) => {
         let e = await api.allReports(type);
-
+        console.log(e)
         let r = report;
         r.push( { tipo: type, data: e } );
         setReport(r);
+        console.log(report)
     }
-    console.log(report);
 
     useEffect(() => {
         listReports('semanal')

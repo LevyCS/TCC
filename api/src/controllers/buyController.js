@@ -37,9 +37,8 @@ app.post ('/event', async (req, resp) => {
     try {
         let { cardNumber, cardOwner, cvc, validity, cpf } = req.body.creditCard;
         let { userId, paymentMethod, eventId } = req.body.selling;
-        console.log(req.body)
-        console.log(req.body.sellingItems)
-        console.log(!req.body.sellingItems || req.body.sellingItems.length == 0)
+        console.log(req.body);
+
         
         if (!req.body.sellingItems || req.body.sellingItems.length != req.body.qtd)  
             return resp.send({erro: "Um ou mais ingressos foram selecionados sem data"})

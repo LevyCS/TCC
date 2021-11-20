@@ -13,11 +13,9 @@ export default function Ingressos(props) {
         nav.push('/')
 
     const [tickets, setTickets] = useState();
-    console.log(tickets.hr_evento);
 
     const userTicket = async() => {
         let r = await api.getUserTickets(props.location.state)
-        console.log(r)
         setTickets(r);
     }
 
