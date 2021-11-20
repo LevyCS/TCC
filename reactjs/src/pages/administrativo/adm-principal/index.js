@@ -11,7 +11,6 @@ const api = new Api();
 export default function ADMPrincipal () {
 
     const[report, setReport] = useState([]);
-    const[type, setType] = useState('');
 
     async function listar(type) {
         let e = await api.allReports(type);

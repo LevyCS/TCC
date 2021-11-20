@@ -295,6 +295,7 @@ app.get('/highlighted', async (req, resp) => {
                 [col('id_calendario_item_infoc_nws_tb_calendario_item.id_calendario_infoc_nws_tb_calendario.id_evento_infoc_nws_tb_evento.img_sec'), 'imagemsecundaria'],
                 [col('id_calendario_item_infoc_nws_tb_calendario_item.id_calendario_infoc_nws_tb_calendario.id_evento_infoc_nws_tb_evento.id_categoria_infoc_nws_tb_categorium.ds_tema'), 'ds_tema']
             ],
+           
             include: [
                 {
                     model: db.infoc_nws_tb_calendario_item,

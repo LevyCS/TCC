@@ -23,7 +23,7 @@ const Container = styled.div`
         background-color: rgba(103, 128, 128, 0.4);
 
         width: 95%; 
-        height: 80%; 
+        height: 60%; 
         overflow-y: auto;
 
         align-items: center; 
@@ -38,8 +38,7 @@ const Container = styled.div`
         border-radius: 35px; 
         border: 5px solid white; 
         width: 145vh; 
-        height: 20vh;
-        overflow-y: auto;
+        
         align-items: center;
 
         background: url("/assets/images/NWS-background-ticket.png"); 

@@ -12,6 +12,7 @@ const Box = styled.div`
     width: 90%; 
     height: 10em; 
     align-items: center;
+    margin: 1em;
 
     background-size: 100%;
     background-repeat: no-repeat; 
