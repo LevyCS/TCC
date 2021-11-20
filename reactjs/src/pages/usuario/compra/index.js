@@ -108,12 +108,12 @@ export default function AllBuy (props) {
 
 
     const createVendaItem = async () => {
-        let r = await api.finishBuy(cardNumber, cardOwner, cvc, validity, cpf, user.id_usuario, event.id_evento, paymentMethod, hours);
+        let r = await api.finishBuy(cardNumber, cardOwner, cvc, validity, cpf, user.id_usuario, event.id_evento, paymentMethod, hours, qtd);
         if(!Validador(r))
             return;
 
         toast.dark('Compra concluída')
-        setTimeout(() => navig.push('/'), 10000)
+      
     }
 
     useState(() => {
