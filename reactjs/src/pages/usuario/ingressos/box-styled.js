@@ -39,6 +39,7 @@ export const Container = styled.div`
         background-image: url(${(props) => props.background});
         filter: brightness(50%);
         opacity: 0.5;
+        background-size: 100% 100%;
         border-radius: 25px;
         z-index: -1;
     }

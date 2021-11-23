@@ -19,7 +19,7 @@ export default function ADMPrincipal () {
 
 
     useEffect(() => {
-      listar('semanal');
+      listar('diário');
     }, [])
 
     const pieGraphic = () => {
@@ -66,14 +66,13 @@ export default function ADMPrincipal () {
         <PrincipalPart>
         <div class="first-band">
             <div class="transparent-band">
-                <div class="title"> Relatório Semanal </div>
+                <div class="title"> Relatório Diário </div>
                 <div class="graphics">
                    <div> {pieGraphic()}</div>
                 </div>
 
                 <div class="buttons">
-                    <Botao class="but-bit"> <Link to="/relatorios" className="Elink"> Ver mais relatórios </Link> </Botao>
-                    <Link to='/'> <Botao> Voltar </Botao> </Link>
+                    
                 </div>
             </div>
         </div>

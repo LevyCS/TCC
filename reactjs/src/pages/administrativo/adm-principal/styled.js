@@ -24,15 +24,22 @@ const PrincipalPart = styled.div`
 
 .transparent-band {
     background-color: rgba(176, 196, 222, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 55em;
+    height: 70%;
 }
 
 .title {
     text-align: center;
     text-transform: uppercase;
+    font-weight: bolder;
     font-size: 2em;
 
-    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .graphics {
