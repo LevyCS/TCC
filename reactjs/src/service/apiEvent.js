@@ -18,8 +18,12 @@ export default class Api {
         return r.data
     }
     
-    async crudUpdateEvents() {
-        
+    async crudUpdateEvents(formdata) {
+        let r = await api.put('/crud', formdata, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+        }});
+        return r.data;
     }
     
     async crudDeleteEvents(id) {

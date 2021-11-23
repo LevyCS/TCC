@@ -43,7 +43,6 @@ export function Table_content2(props) {
                         pathname: '/eventos',
                         state: props.info 
                     }}> <ButtonRightImage texto="Ver" imagem="assets/images/acao_ver.png" /> </Link>
-                    <ButtonRightImage texto="Alterar" imagem="assets/images/acao_alterar.png" />
                    <div onClick={() => deletar(props.info.id_evento)} > <ButtonRightImage texto="Excluir" imagem="assets/images/acao_remover.png" /> </div>
                 </td>
         </Container>

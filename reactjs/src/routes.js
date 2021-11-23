@@ -19,6 +19,7 @@ import UserProfile from './pages/usuario/perfil/index.js';
 import AllBuy from './pages/usuario/compra/index.js';
 import AddEvent from './pages/administrativo/adicionar-evento/index.js';
 import AddSession from './pages/administrativo/adicionar-sessoes/index.js';
+import UpdateEvent from './pages/administrativo/alterar-evento/index.js';
 
 
 export default function Routes() {
@@ -46,6 +47,7 @@ export default function Routes() {
                 <Route path="/ingresso-compra" component={AllBuy} />
                 <Route path="/addevent" component={AddEvent} />
                 <Route path='/addsession' component={AddSession} />
+                <Route path='/updateevent' component={UpdateEvent} />
             </Switch>
         </BrowserRouter>
     )

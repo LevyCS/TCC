@@ -15,6 +15,7 @@ const Container = styled.div`
     border-radius: 25px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     padding: 5px 1rem;
 

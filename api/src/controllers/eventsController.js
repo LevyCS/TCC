@@ -24,7 +24,6 @@ app.get('/crud', async(req, resp) => {
                 return {bt_ativo: true}
             }
         }
-
         
         let events = await db.infoc_nws_tb_evento.findAll({
             where: filterChoose(), order: [['id_evento', 'desc']],

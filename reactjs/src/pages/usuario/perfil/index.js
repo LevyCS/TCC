@@ -52,7 +52,7 @@ export default function UserProfile () {
     }
 
     const getImage = () => {
-        if (usuario.img_perfil == null) {
+        if (!usuario.img_perfil) {
             return;
         }
 
