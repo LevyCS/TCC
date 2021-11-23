@@ -8,10 +8,6 @@ const api = new Api();
 
 export default function ADMRelatorios () {
     const[report, setReport] = useState([]);
-    const sen = 'semanal';
-    const men = 'mensal';
-    const sem = 'semestral';
-    const an = 'anual';
     
     const listReports = async(type) => {
         let e = await api.allReports(type);

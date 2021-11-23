@@ -213,6 +213,10 @@ app.get('/crud/getall', async(req, resp) => {
 app.get('/buscadireta', async (req,resp) => {
     try {
         let search = req.query.search;
+
+        if(search == null || search == undefined )
+            return resp.send( {erro: "Algo deve ser pesquisado para que possa ter alguma resposta."} )
+
         let r = await db.infoc_nws_tb_evento.findAll( 
             { where: {
                 [Op.or]: [

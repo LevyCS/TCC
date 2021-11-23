@@ -30,11 +30,15 @@ export default function BuscaDireta(props) {
 
         let mySearch = getQuery('search');
         ref.current.continuousStart();
-        if(mySearch !== null) {
-            const resp = await api.directSearch(mySearch);
-            console.log(resp)
-            setEvent(resp);
-        }
+        const r = await api.directSearch(mySearch);
+            if(mySearch === null || mySearch === undefined){
+                toast.dark(r.erro);
+                ref.current.complete();
+                return;
+            } 
+                
+
+        setEvent(r);
         ref.current.complete();
         
     }
