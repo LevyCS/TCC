@@ -83,30 +83,30 @@ app.put('/update/:id', upload.single('imagem'), async (req, resp) => {
         delete json.imagem;  
 
         if(!validateEmptyValues(json))
-            return resp.send({erro: "Todos os campos são obrigatórios"})
+        return resp.send({erro: "Todos os campos são obrigatórios"})
 
-        if(json.nmUsu.lenght <= 3)
+        if(json.nmUsu.length <= 3)
             return resp.send({erro: "Nome precisa conter mais de 3 caracteres"})
 
         if(isNaN(Number(json.cpf))) 
             return resp.send({erro: "O cpf deve estar no formato só números"})
-
-        if(json.cpf.lenght != 11)
+        
+        if(json.cpf.length != 11)
             return resp.send({erro: "Cpf deve conter 11 números"})
 
         if(!json.email.includes('@') || json.email.substr(json.email.indexOf('@'), json.email.length).length <= 3 )
             return resp.send({erro: "Email inválido, precisa conter um dominio"})
 
         let validacaoCpf = await db.infoc_nws_tb_usuario.findOne({where: {ds_cpf: json.cpf}})
-        if (validacaoCpf != null && validacaoCpf.id_usuario != req.params.id)
+        if (validacaoCpf && validacaoCpf.id_usuario != req.params.id)
             return resp.send( {erro: "Cpf já cadastrado"})
 
         let validacaoEmail = await db.infoc_nws_tb_usuario.findOne({where: {ds_email: json.email}})
-        if (validacaoEmail != null && validacaoEmail.id_usuario != req.params.id) 
+        if (validacaoEmail && validacaoEmail.id_usuario != req.params.id) 
             return resp.send( { erro: "Email já cadastrado"})
         
         let validacaoUsername = await db.infoc_nws_tb_usuario.findOne({where: {ds_username: json.username}})
-        if (validacaoUsername != null && validacaoUsername.id_usuario != req.params.id)
+        if (validacaoUsername && validacaoUsername.id_usuario != req.params.id)
             return resp.send({ erro: "Username já cadastrado"})
             
         if (!req.file) {

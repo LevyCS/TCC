@@ -73,7 +73,7 @@ export default function ADMPrincipal () {
 
                 <div class="buttons">
                     <Botao class="but-bit"> <Link to="/relatorios" className="Elink"> Ver mais relatórios </Link> </Botao>
-                    <Link> <Botao> Voltar </Botao> </Link>
+                    <Link to='/'> <Botao> Voltar </Botao> </Link>
                 </div>
             </div>
         </div>
