@@ -77,24 +77,32 @@ app.put('/confirmTicket', async (req,resp) => {
 
 })
 
-function weeklydate (date) {
+function diarydate (date) {
     var dt = new Date(date);
-    dt.setDate(dt.getDate() - 7);
+    dt.setDate(dt.getDate() -1);
     return dt;
 }
-function monthlydate (date) {
+
+function weeklydate (date) {
     var dt = new Date(date);
-    dt.setDate(dt.getDate() - 30);
+    dt.setDate(dt.getDate() -7);
+    return dt;
+}
+
+function yearlydate (date) {
+    var dt = new Date(date);
+    dt.setDate(dt.getDate() - 365);
     return dt;
 }
 function semestrallydate (date) {
     var dt = new Date(date);
-    dt.setDate(dt.getDate() - 183);
+    dt.setDate(dt.getDate() - 182);
     return dt;
 }
-function yearlydate (date) {
+
+function monthlydate (date) {
     var dt = new Date(date);
-    dt.setDate(dt.getDate() - 365);
+    dt.setDate(dt.getDate() - 30);
     return dt;
 }
 
@@ -105,20 +113,39 @@ app.get('/relatorios', async (req,resp) => {
         let inicio = new Date();
         let final = new Date();
 
-        if(tipo == 'semanal') {
-            inicio = weeklydate(inicio);
-        } else if (tipo == 'mensal') {
+
+        let tipoRef = tipo.toString();
+        let finalType = tipoRef.toLocaleLowerCase();
+        
+
+        if(finalType == 'diário') {
+            inicio = diarydate(inicio);
+        } else if (finalType == 'semanal') {
+            inicio = weeklydate(inicio)
+        } else if (finalType == 'mensal') {
             inicio = monthlydate(inicio);
-        } else if (tipo == 'semestral') {
+        } else if (finalType == 'semestral') {
             inicio = semestrallydate(inicio);
-        } else {
+        } else if (finalType == 'anual') {
             inicio = yearlydate(inicio);
+        } else {
+            resp.send ({ erro: 'Não foi possível gerar o relatório pois não segue os padrões impostos.' })
         }
+        
+            
+        
+            
+        
+            
+
+        console.log(inicio);
+        console.log(final);
+
 
         let r = await db.infoc_nws_tb_categoria.findAll({
             where: {
-                '$infoc_nws_tb_eventos.infoc_nws_tb_evento_venda.dt_inclusao$': {[Op.gt]: inicio},
-                '$infoc_nws_tb_eventos.infoc_nws_tb_evento_venda.dt_inclusao$': {[Op.lt]: final}
+                '$infoc_nws_tb_eventos.infoc_nws_tb_evento_venda.dt_inclusao$': {[Op.lt]: final},
+                '$infoc_nws_tb_eventos.infoc_nws_tb_evento_venda.dt_inclusao$': {[Op.gt]: inicio}
             },
             group: [
                 col('id_categoria')

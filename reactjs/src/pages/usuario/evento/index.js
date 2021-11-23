@@ -61,7 +61,7 @@ export default function TelaEvento(props) {
     function dateFormat (date) {
         let y = new Date(date);
 
-        let m = y.getMonth();
+        let m = y.getMonth()+ 1;
         let month = monthFormat(m);
 
         let b = (( y.getDate() )) + " de " + month + " de " + (( y.getFullYear() ));

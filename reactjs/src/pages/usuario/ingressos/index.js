@@ -19,6 +19,8 @@ export default function Ingressos(props) {
         setTickets(r);
     }
 
+
+
     useEffect(() => {
         userTicket();
     }, [])
@@ -29,7 +31,7 @@ export default function Ingressos(props) {
             <div className="boxes">
                 {!tickets ? <div> </div>
                     : tickets.map((item) => {
-                    return <Box titulo={item.nomevento} local={item.local} tema={item.ds_tema} situacao={item.situacao} imgFundo={item.imagemfundo}/> })
+                    return <Box titulo={item.nomevento} local={item.local} tema={item.ds_tema} situacao={item.situacao} imgFundo={item.imagemfundo} data={item.dataevento} hora={item.horaevento}/> })
                 }       
             </div>
         </Container> 
