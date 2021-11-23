@@ -16,6 +16,7 @@ export default function ADMRelatorios () {
         setReport(r);
         console.log(report)
     }
+    
 
     useEffect(() => {
         listReports('diário')
